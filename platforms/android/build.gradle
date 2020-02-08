@@ -29,12 +29,14 @@ buildscript {
         // in the individual module build.gradle files
 
         classpath 'com.android.tools.build:gradle:3.3.0'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
 }
 
 allprojects {
     repositories {
         google()
+        maven { url 'http://raw.github.com/saki4510t/libcommon/master/repository/' }
         jcenter()
     }
 
@@ -44,6 +46,11 @@ allprojects {
       defaultMinSdkVersion=19 //Integer - Minimum requirement is Android 4.4
       defaultTargetSdkVersion=28 //Integer - We ALWAYS target the latest by default
       defaultCompileSdkVersion=28 //Integer - We ALWAYS compile with the latest by default
+      versionNameString = '1.2.0.20191101' // libutils version string
+      javaSourceCompatibility = JavaVersion.VERSION_1_8
+      javaTargetCompatibility = JavaVersion.VERSION_1_8
+      androidXVersion = '1.1.0'  // variable that can be referenced to keep support libs consistent
+      commonLibVersion= '4.1.1'
     }
 }
 
