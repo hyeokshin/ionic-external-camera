@@ -97,6 +97,7 @@ public abstract class AbstractUVCCameraHandler extends Handler {
 
     public interface OnCaptureListener {
         void onCaptureResult(String picPath);
+        void onCaptureResult(Bitmap bitmap);
     }
 
     private static final int MSG_OPEN = 0;
@@ -602,7 +603,7 @@ public abstract class AbstractUVCCameraHandler extends Handler {
                 // get buffered output stream for saving a captured still image as a file on external storage.
                 // the file name is came from current time.
                 // You should use extension name as same as CompressFormat when calling Bitmap#compress.
-                final File outputFile = TextUtils.isEmpty(path)
+                /*final File outputFile = TextUtils.isEmpty(path)
                         ? MediaMuxerWrapper.getCaptureFile(Environment.DIRECTORY_DCIM, ".jpg")
                         : new File(path);
                 final BufferedOutputStream os = new BufferedOutputStream(new FileOutputStream(outputFile));
@@ -616,8 +617,10 @@ public abstract class AbstractUVCCameraHandler extends Handler {
                 } finally {
                     os.close();
                 }
+                */
                 if (mCaptureListener != null) {
-                    mCaptureListener.onCaptureResult(path);
+                    //mCaptureListener.onCaptureResult(path);
+                    mCaptureListener.onCaptureResult(bitmap);
                 }
             } catch (final Exception e) {
                 callOnError(e);
