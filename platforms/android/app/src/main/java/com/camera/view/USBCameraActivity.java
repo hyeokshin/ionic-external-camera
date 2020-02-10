@@ -2,6 +2,7 @@ package com.camera.view;
 
 import android.hardware.usb.UsbDevice;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -32,12 +33,15 @@ import com.serenegiant.usb.USBMonitor;
 import com.serenegiant.usb.common.AbstractUVCCameraHandler;
 import com.serenegiant.usb.widget.CameraViewInterface;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.ionic.starter.R;
+
+import static android.os.Environment.DIRECTORY_PICTURES;
 
 /**
  * UVCCamera use demo
@@ -218,9 +222,13 @@ public class USBCameraActivity extends AppCompatActivity implements CameraDialog
                     showShortMsg("sorry,camera open failed");
                     return super.onOptionsItemSelected(item);
                 }
-                String picPath = UVCCameraHelper.ROOT_PATH + ExternalCameraActivity.DIRECTORY_NAME +"/images/"
-                        + System.currentTimeMillis() + UVCCameraHelper.SUFFIX_JPEG;
-
+                File root = Environment.getExternalStoragePublicDirectory(DIRECTORY_PICTURES);
+                String dirPath = root.getPath() + "/camtist";
+                File myDir = new File(dirPath);
+                if(!myDir.exists()){
+                    myDir.mkdir();
+                }
+                String picPath = dirPath + "/" + System.currentTimeMillis() + UVCCameraHelper.SUFFIX_JPEG;
                 mCameraHelper.capturePicture(picPath, new AbstractUVCCameraHandler.OnCaptureListener() {
                     @Override
                     public void onCaptureResult(String path) {

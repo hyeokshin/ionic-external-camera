@@ -132,5 +132,7 @@
     <orderEntry type="library" name="Gradle: androidx.arch.core:core-runtime:2.0.0@aar" level="project" />
     <orderEntry type="module" module-name="libusbcamera" />
     <orderEntry type="module" module-name="CordovaLib" />
+    <orderEntry type="module" module-name="libusbcamera" />
+    <orderEntry type="module" module-name="CordovaLib" />
   </component>
 </module>
